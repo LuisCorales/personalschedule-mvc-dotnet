@@ -26,5 +26,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
 
             return View();
         }
+
+        //Aniadir tabs para las 5 tablas de la DB
     }
 }
