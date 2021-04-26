@@ -27,7 +27,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             return View();
         }
 
-        public ActionResult PruebaNav()
+        public ActionResult Eventos()
         {
             ViewBag.Message = "Your contact page.";
 
