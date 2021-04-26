@@ -15,10 +15,21 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Eventos
-        public ActionResult Index()
+        public ActionResult Index(string Titulo)
         {
-            var evento = db.Evento.Include(e => e.Diario).Include(e => e.Serie);
-            return View(evento.ToList());
+            if (!String.IsNullOrEmpty(Titulo))
+            {
+                var evento = from s in db.Evento select s;
+                evento = evento.Where(s => s.Titulo.Contains(Titulo));
+                evento.Include(e => e.Diario).Include(e => e.Serie);
+                return View(evento.ToList());
+            }
+            else
+            {
+                var evento = db.Evento.Include(e => e.Diario).Include(e => e.Serie);
+                return View(evento.ToList());
+            }
+            
         }
 
         // GET: Eventos/Details/5

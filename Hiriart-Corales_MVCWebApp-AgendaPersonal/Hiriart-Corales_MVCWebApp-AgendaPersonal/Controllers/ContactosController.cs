@@ -15,9 +15,21 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Contactos
-        public ActionResult Index()
+        public ActionResult Index(string Nombre)
         {
-            return View(db.Contacto.ToList());
+            if (!String.IsNullOrEmpty(Nombre))
+            {
+                var contacto = from s in db.Contacto select s;
+                contacto = contacto.Where(s => s.Nombre.Contains(Nombre));
+                contacto.Include(c => c.Evento);
+                return View(contacto.ToList());
+            }
+            else
+            {
+                var contacto = db.Contacto.Include(c => c.Evento);
+                return View(contacto.ToList());
+            }
+            
         }
 
         // GET: Contactos/Details/5
@@ -38,6 +50,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // GET: Contactos/Create
         public ActionResult Create()
         {
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo");
             return View();
         }
 
@@ -55,6 +68,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 
@@ -70,6 +84,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 
@@ -86,6 +101,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 

@@ -15,9 +15,18 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Diarios
-        public ActionResult Index()
+        public ActionResult Index(string Keyword)
         {
-            return View(db.Diario.ToList());
+            if (!String.IsNullOrEmpty(Keyword))
+            {
+                var diario = from s in db.Diario select s;
+                diario = diario.Where(s => s.Contenido.Contains(Keyword));
+                return View(diario.ToList());
+            }
+            else
+            {
+                return View(db.Diario.ToList());
+            }          
         }
 
         // GET: Diarios/Details/5

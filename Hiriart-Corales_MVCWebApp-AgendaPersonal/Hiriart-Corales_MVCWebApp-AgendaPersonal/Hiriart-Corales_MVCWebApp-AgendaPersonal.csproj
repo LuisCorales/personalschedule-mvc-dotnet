@@ -192,11 +192,6 @@
     <Content Include="Views\Eventos\Details.cshtml" />
     <Content Include="Views\Eventos\Edit.cshtml" />
     <Content Include="Views\Eventos\Index.cshtml" />
-    <Content Include="Views\Contactos\Create.cshtml" />
-    <Content Include="Views\Contactos\Delete.cshtml" />
-    <Content Include="Views\Contactos\Details.cshtml" />
-    <Content Include="Views\Contactos\Edit.cshtml" />
-    <Content Include="Views\Contactos\Index.cshtml" />
     <Content Include="Views\Series\Create.cshtml" />
     <Content Include="Views\Series\Delete.cshtml" />
     <Content Include="Views\Series\Details.cshtml" />
@@ -212,6 +207,11 @@
     <Content Include="Views\Notificaciones\Details.cshtml" />
     <Content Include="Views\Notificaciones\Edit.cshtml" />
     <Content Include="Views\Notificaciones\Index.cshtml" />
+    <Content Include="Views\Contactos\Create.cshtml" />
+    <Content Include="Views\Contactos\Delete.cshtml" />
+    <Content Include="Views\Contactos\Details.cshtml" />
+    <Content Include="Views\Contactos\Edit.cshtml" />
+    <Content Include="Views\Contactos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
