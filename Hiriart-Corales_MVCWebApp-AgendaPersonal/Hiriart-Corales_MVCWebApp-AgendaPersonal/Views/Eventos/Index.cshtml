@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Evento>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Índice";
 }
 
-<h2>Index</h2>
+<h2>Índice</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nuevo evento", "Create")
 </p>
 @using (Html.BeginForm())
 {
@@ -65,9 +65,9 @@
                 @Html.DisplayFor(modelItem => item.Diario.Contenido)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EventoID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EventoID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EventoID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.EventoID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.EventoID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.EventoID })
             </td>
         </tr>
     }

@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Serie>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Índice";
 }
 
-<h2>Index</h2>
+<h2>Índice</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nueva serie", "Create")
 </p>
 @using (Html.BeginForm())
 {
@@ -31,13 +31,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
-            <td>              
-                @Html.DropDownListFor(modelItem => item.Evento, new SelectList(item.Evento))
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SerieID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SerieID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SerieID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.SerieID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.SerieID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.SerieID })
             </td>
         </tr>
     }
