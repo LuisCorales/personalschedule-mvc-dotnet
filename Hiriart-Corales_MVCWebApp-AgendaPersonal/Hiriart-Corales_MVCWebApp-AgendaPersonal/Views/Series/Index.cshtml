@@ -9,6 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Titulo")
+    <input type="submit" value="Buscar" />
+}
 <table class="table">
     <tr>
         <th>
@@ -17,17 +22,18 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Titulo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SerieID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SerieID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SerieID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SerieID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SerieID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SerieID })
+            </td>
+        </tr>
+    }
 
 </table>
