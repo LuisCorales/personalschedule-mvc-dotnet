@@ -21,7 +21,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             if (!String.IsNullOrEmpty(Titulo))
             {
                 var memo = from s in db.Memo select s;
-                memo = memo.Where(s => s.Titulo.Contains(Titulo));
+                memo = memo.Where(s => s.Contenido.Contains(Titulo));
                 memo.Include(m => m.Evento);
                 return View(memo.ToList());
             }
@@ -59,7 +59,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MemoID,EventoID,Titulo")] Memo memo)
+        public ActionResult Create([Bind(Include = "MemoID,EventoID,Contenido")] Memo memo)
         {
             if (ModelState.IsValid)
             {
@@ -68,7 +68,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", memo.EventoID);
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Contenido", memo.EventoID);
             return View(memo);
         }
 
@@ -84,7 +84,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", memo.EventoID);
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Contenido", memo.EventoID);
             return View(memo);
         }
 
@@ -93,7 +93,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MemoID,EventoID,Titulo")] Memo memo)
+        public ActionResult Edit([Bind(Include = "MemoID,EventoID,Contenido")] Memo memo)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", memo.EventoID);
+            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Contenido", memo.EventoID);
             return View(memo);
         }
 

@@ -17,10 +17,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Evento.Titulo)
+            Evento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Hora)
+            Hora (hh/mm/ss)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Evento.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Hora)
+                @Html.DisplayFor(modelItem => item.Hora.TimeOfDay)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.NotificacionID }) |

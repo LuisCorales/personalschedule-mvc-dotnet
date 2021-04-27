@@ -119,6 +119,10 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Diario diario = db.Diario.Find(id);
+            foreach (var evento in diario.Evento)
+            {
+                evento.Serie = null;
+            }         
             db.Diario.Remove(diario);
             db.SaveChanges();
             return RedirectToAction("Index");

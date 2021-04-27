@@ -11,16 +11,9 @@
     <h4>Contacto</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Evento.Titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Evento.Titulo)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Nombre
         </dt>
 
         <dd>
@@ -28,7 +21,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Apellido)
+            Apellido
         </dt>
 
         <dd>
@@ -36,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Telefono)
+            Teléfono
         </dt>
 
         <dd>
@@ -44,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            e-mail
         </dt>
 
         <dd>
@@ -52,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Organizacion)
+            Organización
         </dt>
 
         <dd>
@@ -60,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
+            Fecha de nacimiento
         </dt>
 
         <dd>
@@ -68,11 +61,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.InformacionAdicional)
+            Informacion adicional
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.InformacionAdicional)
+        </dd>
+
+        <dt>
+            Eventos relacionados
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Evento.Titulo)
         </dd>
 
     </dl>

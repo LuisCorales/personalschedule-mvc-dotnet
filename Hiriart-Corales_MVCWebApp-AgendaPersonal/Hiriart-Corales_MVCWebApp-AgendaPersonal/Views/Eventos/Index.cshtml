@@ -17,38 +17,32 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Diario.Contenido)
+            Inicio (aa/mm/dd hh:mm:ss)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Serie.Titulo)
+            Fin (aa/mm/dd hh:mm:ss)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Inicio)
+            Título
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Fin)
+            Descripción
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Titulo)
+            Ubicación
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            Serie
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Ubicacion)
+            Entradas de diario relacionadas
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Diario.Contenido)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Serie.Titulo)
-            </td>
+        <tr>                     
             <td>
                 @Html.DisplayFor(modelItem => item.Inicio)
             </td>
@@ -63,6 +57,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Serie.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diario.Contenido)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.EventoID }) |

@@ -11,6 +11,5 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public DateTime Fecha { get; set; }
         public string Contenido { get; set; }
         public virtual ICollection<Evento> Evento { get; set; }
-        //public virtual ICollection<Contacto> Contacto { get; set; }
     }
 }

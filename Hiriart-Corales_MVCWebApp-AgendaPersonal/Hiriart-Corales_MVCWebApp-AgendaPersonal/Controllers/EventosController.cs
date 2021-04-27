@@ -130,6 +130,18 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Evento evento = db.Evento.Find(id);
+            foreach (var notificacion in evento.Notificacion)
+            {
+                notificacion.Evento = null;
+            }
+            foreach (var memo in evento.Memo)
+            {
+                memo.Evento = null;
+            }
+            foreach (var contacto in evento.Contacto)
+            {
+                contacto.Evento = null;
+            }
             db.Evento.Remove(evento);
             db.SaveChanges();
             return RedirectToAction("Index");

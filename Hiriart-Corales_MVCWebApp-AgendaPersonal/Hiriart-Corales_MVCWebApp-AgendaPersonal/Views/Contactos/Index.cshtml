@@ -17,38 +17,35 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Evento.Titulo)
+            Nombre
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nombre)
+            Apellido
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Apellido)
+            Teléfono
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefono)
+            e-mail
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Organización
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Organizacion)
+            Fecha de nacimiento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaNacimiento)
+            Informacion adicional
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InformacionAdicional)
+            Eventos relacionados
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Evento.Titulo)
-            </td>
+        <tr>           
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -69,6 +66,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InformacionAdicional)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento.Titulo)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ContactoID }) |

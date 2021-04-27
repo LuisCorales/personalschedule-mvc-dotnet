@@ -17,10 +17,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Evento.Titulo)
+            Evento
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Titulo)
+            Título
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.Evento.Titulo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
+                @Html.DisplayFor(modelItem => item.Contenido)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.MemoID }) |
