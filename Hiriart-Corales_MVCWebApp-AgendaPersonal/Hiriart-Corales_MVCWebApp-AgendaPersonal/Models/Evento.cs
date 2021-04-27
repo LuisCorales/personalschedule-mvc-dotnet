@@ -8,8 +8,8 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
     public class Evento
     {
         public int EventoID { get; set; }
-        public int DiarioID { get; set; }
-        public int SerieID { get; set; }
+        public Nullable<int> DiarioID { get; set; }
+        public Nullable<int> SerieID { get; set; }
         public DateTime Inicio { get; set; }
         public DateTime Fin { get; set; }
         public string Titulo { get; set; }

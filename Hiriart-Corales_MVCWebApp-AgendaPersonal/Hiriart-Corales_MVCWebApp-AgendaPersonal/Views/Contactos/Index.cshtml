@@ -9,6 +9,11 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Nombre")
+    <input type="submit" value="Buscar" />
+}
 <table class="table">
     <tr>
         <th>
@@ -38,38 +43,39 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Evento.Titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Apellido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Organizacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaNacimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InformacionAdicional)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ContactoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ContactoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ContactoID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InformacionAdicional)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ContactoID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ContactoID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ContactoID })
+            </td>
+        </tr>
+    }
 
 </table>
