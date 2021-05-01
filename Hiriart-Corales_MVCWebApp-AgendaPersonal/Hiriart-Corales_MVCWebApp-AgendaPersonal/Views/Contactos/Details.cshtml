@@ -1,0 +1,74 @@
+﻿@model Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Contacto
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Contacto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            Apellido
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+
+        <dt>
+            Teléfono
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            e-mail
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            Organización
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Organizacion)
+        </dd>
+
+        <dt>
+            Fecha de nacimiento
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaNacimiento.Date)
+        </dd>
+
+        <dt>
+            Información adicional
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InformacionAdicional)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ContactoID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

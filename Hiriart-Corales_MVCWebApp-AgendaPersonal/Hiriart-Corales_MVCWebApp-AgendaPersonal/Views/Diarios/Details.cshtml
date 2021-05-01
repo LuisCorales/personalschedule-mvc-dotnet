@@ -1,0 +1,42 @@
+﻿@model Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Diario
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Diario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           ListaEventoID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaEvento.ListaEventoID)
+        </dd>
+
+        <dt>
+            Fecha
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            Contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contenido)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.DiarioID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

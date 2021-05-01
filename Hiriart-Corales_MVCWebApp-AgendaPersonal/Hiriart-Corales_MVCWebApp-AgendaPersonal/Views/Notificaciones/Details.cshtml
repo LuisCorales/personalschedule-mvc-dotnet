@@ -1,0 +1,34 @@
+﻿@model Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Notificacion
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Notificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Título
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            Hora
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora.TimeOfDay)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.NotificacionID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Evento>
+
+@{
+    ViewBag.Title = "Índice";
+}
+
+<h2>Índice</h2>
+
+<p>
+    @Html.ActionLink("Nuevo evento", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Título")
+    <input type="submit" value="Buscar" />
+}
+<table class="table">
+    <tr>
+        <th>
+            Fecha (aa/mm/dd)
+        </th>
+        <th>
+            Hora de inicio (hh:mm:ss)
+        </th>
+        <th>
+            Hora de fin (hh:mm:ss)
+        </th>
+        <th>
+            Título
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th>
+            Ubicación
+        </th>
+        <th>
+            Es serie de repetición
+        </th>
+        <th>
+            Días de repetición
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memo.Contenido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inicio.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inicio.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fin.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ubicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EsSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dias)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListaContacto.ListaContactoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memo.Contenido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notificacion.Titulo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.EventoID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.EventoID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.EventoID })
+            </td>
+        </tr>
+    }
+
+</table>

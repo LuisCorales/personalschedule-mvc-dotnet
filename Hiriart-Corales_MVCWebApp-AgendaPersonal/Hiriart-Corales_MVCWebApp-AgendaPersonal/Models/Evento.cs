@@ -8,8 +8,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
 {
     public class Evento
     {
-        public int EventoID { get; set; }
-        public Nullable<int> ContactoID { get; set; }
+        public int EventoID { get; set; }      
         public Nullable<int> NotificacionID { get; set; }
         public Nullable<int> MemoID { get; set; }
         public Nullable<int> ListaContactoID { get; set; }
@@ -30,6 +29,5 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public virtual ListaContacto ListaContacto { get; set; }
         public virtual Notificacion Notificacion { get; set; }
         public virtual Memo Memo { get; set; }
-        public virtual ICollection<Diario> Diario { get; set; }      
     }
 }

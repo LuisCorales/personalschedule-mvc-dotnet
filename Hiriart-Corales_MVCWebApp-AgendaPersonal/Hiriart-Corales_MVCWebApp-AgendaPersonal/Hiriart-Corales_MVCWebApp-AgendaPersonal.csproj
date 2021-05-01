@@ -126,7 +126,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContactosController.cs" />
+    <Compile Include="Controllers\DiariosController.cs" />
+    <Compile Include="Controllers\EventosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemosController.cs" />
+    <Compile Include="Controllers\NotificacionesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,6 +182,31 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Contactos\Create.cshtml" />
+    <Content Include="Views\Contactos\Delete.cshtml" />
+    <Content Include="Views\Contactos\Details.cshtml" />
+    <Content Include="Views\Contactos\Edit.cshtml" />
+    <Content Include="Views\Contactos\Index.cshtml" />
+    <Content Include="Views\Diarios\Create.cshtml" />
+    <Content Include="Views\Diarios\Delete.cshtml" />
+    <Content Include="Views\Diarios\Details.cshtml" />
+    <Content Include="Views\Diarios\Edit.cshtml" />
+    <Content Include="Views\Diarios\Index.cshtml" />
+    <Content Include="Views\Eventos\Create.cshtml" />
+    <Content Include="Views\Eventos\Delete.cshtml" />
+    <Content Include="Views\Eventos\Details.cshtml" />
+    <Content Include="Views\Eventos\Edit.cshtml" />
+    <Content Include="Views\Eventos\Index.cshtml" />
+    <Content Include="Views\Memos\Create.cshtml" />
+    <Content Include="Views\Memos\Delete.cshtml" />
+    <Content Include="Views\Memos\Details.cshtml" />
+    <Content Include="Views\Memos\Edit.cshtml" />
+    <Content Include="Views\Memos\Index.cshtml" />
+    <Content Include="Views\Notificaciones\Create.cshtml" />
+    <Content Include="Views\Notificaciones\Delete.cshtml" />
+    <Content Include="Views\Notificaciones\Details.cshtml" />
+    <Content Include="Views\Notificaciones\Edit.cshtml" />
+    <Content Include="Views\Notificaciones\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

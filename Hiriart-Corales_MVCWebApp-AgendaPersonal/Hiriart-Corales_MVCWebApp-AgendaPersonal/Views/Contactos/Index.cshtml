@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Contacto>
+
+@{
+    ViewBag.Title = "Índice";
+}
+
+<h2>Índice</h2>
+
+<p>
+    @Html.ActionLink("Nuevo contacto", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    @Html.TextBox("Nombre y/o apellido")
+    <input type="submit" value="Buscar" />
+}
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido
+        </th>
+        <th>
+            Teléfono
+        </th>
+        <th>
+            e-mail
+        </th>
+        <th>
+            Organización
+        </th>
+        <th>
+            Fecha de nacimiento
+        </th>
+        <th>
+            Información adicional
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Organizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InformacionAdicional)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ContactoID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ContactoID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.ContactoID })
+            </td>
+        </tr>
+    }
+
+</table>

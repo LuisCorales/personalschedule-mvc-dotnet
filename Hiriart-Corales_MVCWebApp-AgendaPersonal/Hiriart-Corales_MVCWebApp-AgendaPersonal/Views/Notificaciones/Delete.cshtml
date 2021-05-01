@@ -1,0 +1,40 @@
+﻿@model Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Notificacion
+
+@{
+    ViewBag.Title = "Borrar";
+}
+
+<h2>Borrar</h2>
+
+<h3>¿Está seguro de que desea borrar esto?</h3>
+<div>
+    <h4>Notificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Título
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            Hora
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hora.TimeOfDay)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

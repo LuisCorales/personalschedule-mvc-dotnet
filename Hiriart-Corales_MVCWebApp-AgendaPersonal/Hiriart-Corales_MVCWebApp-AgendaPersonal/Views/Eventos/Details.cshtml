@@ -1,0 +1,107 @@
+﻿@model Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Evento
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Evento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Fecha (aa/mm/dd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inicio.Date)
+        </dd>
+
+        <dt>
+            Hora de inicio (hh:mm:ss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inicio.TimeOfDay)
+        </dd>
+
+        <dt>
+            Hora de fin (hh:mm:ss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fin.TimeOfDay)
+        </dd>
+
+        <dt>
+            Título
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            Ubicación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ubicacion)
+        </dd>
+
+        <dt>
+            Es serie de repetición
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EsSerie)
+        </dd>
+
+        <dt>
+            Días de repetición
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dias)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaContacto.ListaContactoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Memo.Contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Memo.Contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notificacion.Titulo)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EventoID }) |
+    @Html.ActionLink("Volver", "Index")
+</p>
