@@ -65,11 +65,12 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             if (ModelState.IsValid)
             {
                 db.Evento.Add(evento);
-                ListaEvento listaEvento = new ListaEvento();
+                ListaEvento listaEvento = new ListaEvento();//Crea y llena un anetrada de lista de eventos
                 listaEvento.ListaEventoID = evento.EventoID;
                 listaEvento.IDDiario = null;
                 listaEvento.IDEvento = evento.EventoID;
-                db.ListaEventoes.Add(listaEvento);
+                listaEvento.Titulo = evento.Titulo;
+                db.ListaEventoes.Add(listaEvento);//Aniade una una entrada lista de eventos cuando se crea une vento
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -138,7 +139,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Evento evento = db.Evento.Find(id);
+            ListaEvento listaEvento = db.ListaEventoes.Find(id);//Encuentra la entrada de lista correcta             
             db.Evento.Remove(evento);
+            db.ListaEventoes.Remove(listaEvento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

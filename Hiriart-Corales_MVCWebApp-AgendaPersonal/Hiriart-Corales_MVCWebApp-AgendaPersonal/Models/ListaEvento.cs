@@ -10,6 +10,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public int ListaEventoID { get; set; }
         public Nullable<int> IDDiario { get; set; }
         public int IDEvento { get; set; }
+        public string Titulo { get; set; }
 
         public virtual ICollection<Diario> Diario { get; set; }
     }
