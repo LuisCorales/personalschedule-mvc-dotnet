@@ -1,3 +1,7 @@
-# personalschedule-mvc-dotnet
+# Diario Personal DOT.NET, framewor MVC
+## Diego Hiriart & Luis Corales
+### ISWZ2103-01 Programación IV
  
-A _Personal Schedule and Diary_ made in .NET with MVC pattern design.
+Este proyecto es un agenda personal, hecha en ASP.NET y siguiendo un patrón MVC.
+La aplicación web de este proyecto se desarrollo con un enfoque Code First, cuenta con funcionlidades
+básicas de CRUD, navegación, e interfaz gráfica. 

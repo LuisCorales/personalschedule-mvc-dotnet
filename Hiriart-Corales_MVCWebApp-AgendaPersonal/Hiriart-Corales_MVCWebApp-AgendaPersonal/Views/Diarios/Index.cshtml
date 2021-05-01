@@ -11,23 +11,26 @@
 </p>
 @using (Html.BeginForm())
 {
-    @Html.TextBox("Keyword")
+    @Html.TextBox("Contenido")
     <input type="submit" value="Buscar" />
 }
 <table class="table">
     <tr>
         <th>
-           Fecha
+            Fecha
         </th>
         <th>
-           Contenido
+            Contenido
+        </th>
+        <th>
+            ListaEventoID
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr>          
             <td>
                 @Html.DisplayFor(modelItem => item.Fecha)
             </td>
@@ -35,9 +38,12 @@
                 @Html.DisplayFor(modelItem => item.Contenido)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.DiarioID }) |
-                @Html.ActionLink("Detalles", "Details", new { id = item.DiarioID }) |
-                @Html.ActionLink("Borrar", "Delete", new { id = item.DiarioID })
+                @Html.DisplayFor(modelItem => item.ListaEvento.ListaEventoID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.DiarioID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.DiarioID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.DiarioID })
             </td>
         </tr>
     }

@@ -72,7 +72,6 @@ C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebAp
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\bin\Newtonsoft.Json.xml
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\bin\Antlr3.Runtime.pdb
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csprojAssemblyReference.cache
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csproj.CoreCompileInputs.cache
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csproj.CopyComplete
 C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.dll
@@ -164,3 +163,4 @@ C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCW
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csproj.CopyComplete
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.dll
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.pdb
+C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csprojAssemblyReference.cache

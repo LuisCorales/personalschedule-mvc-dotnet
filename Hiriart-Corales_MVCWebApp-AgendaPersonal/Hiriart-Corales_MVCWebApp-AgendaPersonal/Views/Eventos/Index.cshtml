@@ -11,16 +11,19 @@
 </p>
 @using (Html.BeginForm())
 {
-    @Html.TextBox("Titulo")
+    @Html.TextBox("Título")
     <input type="submit" value="Buscar" />
 }
 <table class="table">
     <tr>
         <th>
-            Inicio (aa/mm/dd hh:mm:ss)
+            Fecha (aa/mm/dd)
         </th>
         <th>
-            Fin (aa/mm/dd hh:mm:ss)
+            Hora de inicio (hh:mm:ss)
+        </th>
+        <th>
+            Hora de fin (hh:mm:ss)
         </th>
         <th>
             Título
@@ -32,22 +35,34 @@
             Ubicación
         </th>
         <th>
-            Serie
+            Es serie de repetición
         </th>
         <th>
-            Entradas de diario relacionadas
+            Días de repetición
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memo.Contenido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>                     
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Inicio)
+                @Html.DisplayFor(modelItem => item.Inicio.Date)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fin)
+                @Html.DisplayFor(modelItem => item.Inicio.TimeOfDay)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fin.TimeOfDay)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
@@ -59,10 +74,19 @@
                 @Html.DisplayFor(modelItem => item.Ubicacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Serie.Titulo)
+                @Html.DisplayFor(modelItem => item.EsSerie)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Diario.Contenido)
+                @Html.DisplayFor(modelItem => item.Dias)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListaContacto.ListaContactoID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Memo.Contenido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notificacion.Titulo)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.EventoID }) |

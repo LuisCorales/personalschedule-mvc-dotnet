@@ -10,24 +10,33 @@
     <h4>Evento</h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            Inicio
+            Fecha (aa/mm/dd)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Inicio)
+            @Html.DisplayFor(model => model.Inicio.Date)
         </dd>
 
         <dt>
-            Fin
+            Hora de inicio (hh:mm:ss)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Fin)
+            @Html.DisplayFor(model => model.Inicio.TimeOfDay)
         </dd>
 
         <dt>
-            Titulo
+            Hora de fin (hh:mm:ss)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fin.TimeOfDay)
+        </dd>
+
+        <dt>
+            Título
         </dt>
 
         <dd>
@@ -35,7 +44,7 @@
         </dd>
 
         <dt>
-            Descripcion
+            Descripción
         </dt>
 
         <dd>
@@ -43,7 +52,7 @@
         </dd>
 
         <dt>
-            Ubicacion
+            Ubicación
         </dt>
 
         <dd>
@@ -51,20 +60,44 @@
         </dd>
 
         <dt>
-            Serie
+            Es serie de repetición
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Serie.Titulo)
+            @Html.DisplayFor(model => model.EsSerie)
         </dd>
 
         <dt>
-            Entradas de diario relacionadas
+            Días de repetición
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Diario.Fecha)
+            @Html.DisplayFor(model => model.Dias)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaContacto.ListaContactoID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Memo.Contenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Memo.Contenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Notificacion.Titulo)
+        </dd>
+
 
     </dl>
 </div>

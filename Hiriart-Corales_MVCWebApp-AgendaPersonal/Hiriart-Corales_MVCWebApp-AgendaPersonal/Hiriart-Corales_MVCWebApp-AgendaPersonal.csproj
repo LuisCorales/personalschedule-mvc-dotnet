@@ -132,7 +132,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MemosController.cs" />
     <Compile Include="Controllers\NotificacionesController.cs" />
-    <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -141,9 +140,10 @@
     <Compile Include="Models\Contacto.cs" />
     <Compile Include="Models\Diario.cs" />
     <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\ListaContacto.cs" />
+    <Compile Include="Models\ListaEvento.cs" />
     <Compile Include="Models\Memo.cs" />
     <Compile Include="Models\Notificacion.cs" />
-    <Compile Include="Models\Serie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -182,6 +182,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Contactos\Create.cshtml" />
+    <Content Include="Views\Contactos\Delete.cshtml" />
+    <Content Include="Views\Contactos\Details.cshtml" />
+    <Content Include="Views\Contactos\Edit.cshtml" />
+    <Content Include="Views\Contactos\Index.cshtml" />
     <Content Include="Views\Diarios\Create.cshtml" />
     <Content Include="Views\Diarios\Delete.cshtml" />
     <Content Include="Views\Diarios\Details.cshtml" />
@@ -192,11 +197,6 @@
     <Content Include="Views\Eventos\Details.cshtml" />
     <Content Include="Views\Eventos\Edit.cshtml" />
     <Content Include="Views\Eventos\Index.cshtml" />
-    <Content Include="Views\Series\Create.cshtml" />
-    <Content Include="Views\Series\Delete.cshtml" />
-    <Content Include="Views\Series\Details.cshtml" />
-    <Content Include="Views\Series\Edit.cshtml" />
-    <Content Include="Views\Series\Index.cshtml" />
     <Content Include="Views\Memos\Create.cshtml" />
     <Content Include="Views\Memos\Delete.cshtml" />
     <Content Include="Views\Memos\Details.cshtml" />
@@ -207,11 +207,6 @@
     <Content Include="Views\Notificaciones\Details.cshtml" />
     <Content Include="Views\Notificaciones\Edit.cshtml" />
     <Content Include="Views\Notificaciones\Index.cshtml" />
-    <Content Include="Views\Contactos\Create.cshtml" />
-    <Content Include="Views\Contactos\Delete.cshtml" />
-    <Content Include="Views\Contactos\Details.cshtml" />
-    <Content Include="Views\Contactos\Edit.cshtml" />
-    <Content Include="Views\Contactos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
