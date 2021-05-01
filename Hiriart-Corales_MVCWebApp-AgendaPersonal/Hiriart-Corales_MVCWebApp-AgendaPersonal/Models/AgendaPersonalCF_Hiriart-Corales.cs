@@ -9,7 +9,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
     public class AgendaPersonalCF_Hiriart_Corales : DbContext
     {
         public DbSet<Evento> Evento { get; set; }
-        public DbSet<Serie> Serie { get; set; }
         public DbSet<Notificacion> Notificacion { get; set; }
         public DbSet<Memo> Memo { get; set; }
         public DbSet<Diario> Diario { get; set; }

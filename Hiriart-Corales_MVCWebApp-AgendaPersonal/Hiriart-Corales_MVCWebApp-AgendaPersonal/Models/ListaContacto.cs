@@ -5,10 +5,11 @@ using System.Web;
 
 namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
 {
-    public class Serie
+    public class ListaContacto
     {
-        public int SerieID { get; set; }
-        public string Titulo { get; set; }
+        public int ListaContactoID { get; set; }
+        public int IDEvento { get; set; }
+        public int IDContacto { get; set; }
 
         public virtual ICollection<Evento> Evento { get; set; }
     }

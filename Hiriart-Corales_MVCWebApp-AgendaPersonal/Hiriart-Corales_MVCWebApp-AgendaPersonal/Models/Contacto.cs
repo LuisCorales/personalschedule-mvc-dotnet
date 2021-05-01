@@ -8,7 +8,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
     public class Contacto
     {
         public int ContactoID { get; set; }
-        public Nullable<int> EventoID { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Telefono { get; set; }
@@ -17,6 +16,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public DateTime FechaNacimiento { get; set; }
         public string InformacionAdicional { get; set; }
 
-        public virtual Evento Evento { get; set; }
+        public virtual ICollection<Evento> Evento { get; set; }
     }
 }
