@@ -15,20 +15,18 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Notificaciones
-        public ActionResult Index(string Titulo)
+        public ActionResult Index(Nullable<DateTime> hora)
         {
-            if (!String.IsNullOrEmpty(Titulo))
+            if (hora != null)
             {
                 var notificacion = from s in db.Notificacion select s;
-                notificacion = notificacion.Where(s => s.Titulo.Contains(Titulo));
-                notificacion.Include(n => n.Evento);
+                notificacion = notificacion.Where(s => s.Hora.TimeOfDay.Equals(hora));
                 return View(notificacion.ToList());
             }
             else
             {
-                var notificacion = db.Notificacion.Include(n => n.Evento);
-                return View(notificacion.ToList());
-            }      
+                return View(db.Notificacion.ToList());
+            }
         }
 
         // GET: Notificaciones/Details/5
@@ -49,7 +47,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // GET: Notificaciones/Create
         public ActionResult Create()
         {
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo");
             return View();
         }
 
@@ -58,7 +55,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NotificacionID,EventoID,Hora")] Notificacion notificacion)
+        public ActionResult Create([Bind(Include = "NotificacionID,Titulo,Hora")] Notificacion notificacion)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +64,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", notificacion.EventoID);
             return View(notificacion);
         }
 
@@ -83,7 +79,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", notificacion.EventoID);
             return View(notificacion);
         }
 
@@ -92,7 +87,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NotificacionID,EventoID,Hora")] Notificacion notificacion)
+        public ActionResult Edit([Bind(Include = "NotificacionID,Titulo,Hora")] Notificacion notificacion)
         {
             if (ModelState.IsValid)
             {
@@ -100,7 +95,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", notificacion.EventoID);
             return View(notificacion);
         }
 
@@ -125,6 +119,10 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Notificacion notificacion = db.Notificacion.Find(id);
+            foreach (var evento in notificacion.Evento)
+            {
+                evento.Notificacion = null;
+            }
             db.Notificacion.Remove(notificacion);
             db.SaveChanges();
             return RedirectToAction("Index");

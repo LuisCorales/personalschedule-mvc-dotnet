@@ -11,7 +11,7 @@
 </p>
 @using (Html.BeginForm())
 {
-    @Html.TextBox("Nombre")
+    @Html.TextBox("Nombre y/o apellido")
     <input type="submit" value="Buscar" />
 }
 <table class="table">
@@ -35,17 +35,14 @@
             Fecha de nacimiento
         </th>
         <th>
-            Informacion adicional
-        </th>
-        <th>
-            Eventos relacionados
+            Información adicional
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>           
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Nombre)
             </td>
@@ -62,13 +59,10 @@
                 @Html.DisplayFor(modelItem => item.Organizacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                @Html.DisplayFor(modelItem => item.FechaNacimiento.Date)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InformacionAdicional)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Evento.Titulo)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.ContactoID }) |

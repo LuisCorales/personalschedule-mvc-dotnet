@@ -11,16 +11,16 @@
 </p>
 @using (Html.BeginForm())
 {
-    @Html.TextBox("Titulo")
+    @Html.TextBox("Hora")
     <input type="submit" value="Buscar" />
 }
 <table class="table">
     <tr>
         <th>
-            Evento
+            Título
         </th>
         <th>
-            Hora (hh/mm/ss)
+            Hora
         </th>
         <th></th>
     </tr>
@@ -29,7 +29,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Evento.Titulo)
+                @Html.DisplayFor(modelItem => item.Titulo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Hora.TimeOfDay)

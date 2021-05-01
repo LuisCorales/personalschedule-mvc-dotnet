@@ -15,18 +15,24 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Diarios
-        public ActionResult Index(string Keyword)
+        public ActionResult Index(string keyword, Nullable<DateTime> fecha)
         {
-            if (!String.IsNullOrEmpty(Keyword))
+            if (!String.IsNullOrEmpty(keyword))//Permite buscar por fecha o por contenido
             {
                 var diario = from s in db.Diario select s;
-                diario = diario.Where(s => s.Contenido.Contains(Keyword));
+                diario = diario.Where(s => s.Contenido.Contains(keyword));
+                return View(diario.ToList());
+            }
+            else if (fecha != null)
+            {
+                var diario = from s in db.Diario select s;
+                diario = diario.Where(s => s.Fecha.Date.Equals(fecha));
                 return View(diario.ToList());
             }
             else
             {
                 return View(db.Diario.ToList());
-            }          
+            }
         }
 
         // GET: Diarios/Details/5
@@ -47,6 +53,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // GET: Diarios/Create
         public ActionResult Create()
         {
+            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID");
             return View();
         }
 
@@ -55,7 +62,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DiarioID,Fecha,Contenido")] Diario diario)
+        public ActionResult Create([Bind(Include = "DiarioID,ListaEventoID,Fecha,Contenido")] Diario diario)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +71,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID", diario.ListaEventoID);
             return View(diario);
         }
 
@@ -79,6 +87,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID", diario.ListaEventoID);
             return View(diario);
         }
 
@@ -87,7 +96,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DiarioID,Fecha,Contenido")] Diario diario)
+        public ActionResult Edit([Bind(Include = "DiarioID,ListaEventoID,Fecha,Contenido")] Diario diario)
         {
             if (ModelState.IsValid)
             {
@@ -95,6 +104,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID", diario.ListaEventoID);
             return View(diario);
         }
 
@@ -119,10 +129,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Diario diario = db.Diario.Find(id);
-            foreach (var evento in diario.Evento)
-            {
-                evento.Serie = null;
-            }         
             db.Diario.Remove(diario);
             db.SaveChanges();
             return RedirectToAction("Index");

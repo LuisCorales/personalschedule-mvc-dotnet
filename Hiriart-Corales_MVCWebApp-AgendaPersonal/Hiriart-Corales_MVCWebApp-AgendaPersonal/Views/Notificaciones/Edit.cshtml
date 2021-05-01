@@ -6,7 +6,6 @@
 
 <h2>Editar</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -18,18 +17,18 @@
         @Html.HiddenFor(model => model.NotificacionID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EventoID, "Evento", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Titulo, "Título", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("EventoID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.EventoID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Hora, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Hora, "Hora", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Hora, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Hora, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Hora.TimeOfDay, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -44,7 +43,3 @@
 <div>
     @Html.ActionLink("Volver", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

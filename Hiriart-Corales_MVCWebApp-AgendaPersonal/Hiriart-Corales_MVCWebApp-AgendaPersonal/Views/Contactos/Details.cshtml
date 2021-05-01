@@ -10,7 +10,6 @@
     <h4>Contacto</h4>
     <hr />
     <dl class="dl-horizontal">
-
         <dt>
             Nombre
         </dt>
@@ -28,7 +27,7 @@
         </dd>
 
         <dt>
-            Telefono
+            Teléfono
         </dt>
 
         <dd>
@@ -44,7 +43,7 @@
         </dd>
 
         <dt>
-            Organizacion
+            Organización
         </dt>
 
         <dd>
@@ -56,23 +55,15 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaNacimiento)
+            @Html.DisplayFor(model => model.FechaNacimiento.Date)
         </dd>
 
         <dt>
-            Informacion adicional
+            Información adicional
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.InformacionAdicional)
-        </dd>
-
-        <dt>
-            Eventos relacionados
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Evento.Titulo)
         </dd>
 
     </dl>

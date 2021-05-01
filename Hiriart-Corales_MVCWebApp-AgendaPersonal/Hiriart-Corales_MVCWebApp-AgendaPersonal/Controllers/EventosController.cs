@@ -15,21 +15,20 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Eventos
-        public ActionResult Index(string Titulo)
+        public ActionResult Index(string titulo)
         {
-            if (!String.IsNullOrEmpty(Titulo))
+            if (!String.IsNullOrEmpty(titulo))
             {
                 var evento = from s in db.Evento select s;
-                evento = evento.Where(s => s.Titulo.Contains(Titulo));
-                evento.Include(e => e.Diario).Include(e => e.Serie);
+                evento = evento.Where(s => s.Titulo.Contains(titulo));
+                evento.Include(e => e.ListaContacto).Include(e => e.Memo).Include(e => e.Notificacion);
                 return View(evento.ToList());
             }
             else
             {
-                var evento = db.Evento.Include(e => e.Diario).Include(e => e.Serie);
-                return View(evento.ToList());
-            }
-            
+                var eventoes = db.Evento.Include(e => e.ListaContacto).Include(e => e.Memo).Include(e => e.Notificacion);
+                return View(eventoes.ToList());
+            }          
         }
 
         // GET: Eventos/Details/5
@@ -50,8 +49,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // GET: Eventos/Create
         public ActionResult Create()
         {
-            ViewBag.DiarioID = new SelectList(db.Diario, "DiarioID", "Contenido");
-            ViewBag.SerieID = new SelectList(db.Serie, "SerieID", "Titulo");
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID");
+            ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido");
+            ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo");
             return View();
         }
 
@@ -60,17 +60,24 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventoID,DiarioID,SerieID,Inicio,Fin,Titulo,Descripcion,Ubicacion")] Evento evento)
+        public ActionResult Create([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
         {
             if (ModelState.IsValid)
             {
                 db.Evento.Add(evento);
+                ListaEvento listaEvento = new ListaEvento();//Crea y llena un anetrada de lista de eventos
+                listaEvento.ListaEventoID = evento.EventoID;
+                listaEvento.IDDiario = null;
+                listaEvento.IDEvento = evento.EventoID;
+                listaEvento.Titulo = evento.Titulo;
+                db.ListaEventoes.Add(listaEvento);//Aniade una una entrada lista de eventos cuando se crea une vento
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DiarioID = new SelectList(db.Diario, "DiarioID", "Contenido", evento.DiarioID);
-            ViewBag.SerieID = new SelectList(db.Serie, "SerieID", "Titulo", evento.SerieID);
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID", evento.ListaContactoID);
+            ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido", evento.MemoID);
+            ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo", evento.NotificacionID);
             return View(evento);
         }
 
@@ -86,8 +93,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.DiarioID = new SelectList(db.Diario, "DiarioID", "Contenido", evento.DiarioID);
-            ViewBag.SerieID = new SelectList(db.Serie, "SerieID", "Titulo", evento.SerieID);
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID", evento.ListaContactoID);
+            ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido", evento.MemoID);
+            ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo", evento.NotificacionID);
             return View(evento);
         }
 
@@ -96,7 +104,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventoID,DiarioID,SerieID,Inicio,Fin,Titulo,Descripcion,Ubicacion")] Evento evento)
+        public ActionResult Edit([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
         {
             if (ModelState.IsValid)
             {
@@ -104,8 +112,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DiarioID = new SelectList(db.Diario, "DiarioID", "Contenido", evento.DiarioID);
-            ViewBag.SerieID = new SelectList(db.Serie, "SerieID", "Titulo", evento.SerieID);
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID", evento.ListaContactoID);
+            ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido", evento.MemoID);
+            ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo", evento.NotificacionID);
             return View(evento);
         }
 
@@ -130,19 +139,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Evento evento = db.Evento.Find(id);
-            foreach (var notificacion in evento.Notificacion)
-            {
-                notificacion.Evento = null;
-            }
-            foreach (var memo in evento.Memo)
-            {
-                memo.Evento = null;
-            }
-            foreach (var contacto in evento.Contacto)
-            {
-                contacto.Evento = null;
-            }
+            ListaEvento listaEvento = db.ListaEventoes.Find(id);//Encuentra la entrada de lista correcta             
             db.Evento.Remove(evento);
+            db.ListaEventoes.Remove(listaEvento);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

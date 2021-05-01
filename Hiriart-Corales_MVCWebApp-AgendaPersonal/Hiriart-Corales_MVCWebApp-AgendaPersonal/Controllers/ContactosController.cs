@@ -15,21 +15,19 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         private AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
 
         // GET: Contactos
-        public ActionResult Index(string Nombre)
+        public ActionResult Index(string nombre)
         {
-            if (!String.IsNullOrEmpty(Nombre))
+            if (!String.IsNullOrEmpty(nombre))
             {
                 var contacto = from s in db.Contacto select s;
-                contacto = contacto.Where(s => s.Nombre.Contains(Nombre));
-                contacto.Include(c => c.Evento);
+                contacto = contacto.Where(s => s.Nombre.Contains(nombre)).Where(s => s.Apellido.Contains(nombre));//Busca por nombre y/o apellido
                 return View(contacto.ToList());
             }
             else
             {
-                var contacto = db.Contacto.Include(c => c.Evento);
-                return View(contacto.ToList());
+
+                return View(db.Contacto.ToList());
             }
-            
         }
 
         // GET: Contactos/Details/5
@@ -50,7 +48,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // GET: Contactos/Create
         public ActionResult Create()
         {
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo");
             return View();
         }
 
@@ -59,16 +56,20 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ContactoID,EventoID,Nombre,Apellido,Telefono,Email,Organizacion,FechaNacimiento,InformacionAdicional")] Contacto contacto)
+        public ActionResult Create([Bind(Include = "ContactoID,Nombre,Apellido,Telefono,Email,Organizacion,FechaNacimiento,InformacionAdicional")] Contacto contacto)
         {
             if (ModelState.IsValid)
             {
                 db.Contacto.Add(contacto);
+                ListaContacto listaContacto = new ListaContacto();//Crea y llena una entrada para lista de contacto
+                listaContacto.ListaContactoID = contacto.ContactoID;
+                listaContacto.IDEvento = null;
+                listaContacto.IDContacto = contacto.ContactoID;
+                db.ListaContactoes.Add(listaContacto);//Aniade una entrada a la lista de contactos al crear contactos
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 
@@ -84,7 +85,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 
@@ -93,7 +93,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ContactoID,EventoID,Nombre,Apellido,Telefono,Email,Organizacion,FechaNacimiento,InformacionAdicional")] Contacto contacto)
+        public ActionResult Edit([Bind(Include = "ContactoID,Nombre,Apellido,Telefono,Email,Organizacion,FechaNacimiento,InformacionAdicional")] Contacto contacto)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EventoID = new SelectList(db.Evento, "EventoID", "Titulo", contacto.EventoID);
             return View(contacto);
         }
 
@@ -126,7 +125,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Contacto contacto = db.Contacto.Find(id);
+            ListaContacto listaContacto = db.ListaContactoes.Find(id);//Encuentra el contacto en la lista de contactos           
             db.Contacto.Remove(contacto);
+            db.ListaContactoes.Remove(listaContacto);//Borra esa entrada de lista de contacto
             db.SaveChanges();
             return RedirectToAction("Index");
         }

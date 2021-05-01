@@ -11,16 +11,13 @@
 </p>
 @using (Html.BeginForm())
 {
-    @Html.TextBox("Titulo")
+    @Html.TextBox("Contenido")
     <input type="submit" value="Buscar" />
 }
 <table class="table">
     <tr>
         <th>
-            Evento
-        </th>
-        <th>
-            Título
+            Contenido
         </th>
         <th></th>
     </tr>
@@ -28,9 +25,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Evento.Titulo)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contenido)
             </td>

@@ -10,6 +10,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.AgendaPersonalCF_Hiriart_Corales context)

@@ -6,13 +6,21 @@
 
 <h2>Borrar</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>¿Está seguro de que desea borrar esto?</h3>
 <div>
     <h4>Diario</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Fecha
+            ListaEventoID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ListaEvento.ListaEventoID)
+        </dd>
+
+        <dt>
+            Fecha
         </dt>
 
         <dd>
