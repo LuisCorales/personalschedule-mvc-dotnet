@@ -52,11 +52,11 @@
         </dd>
 
         <dt>
-            Fecha de nacimiento
+            Fecha de nacimiento (dd/mm/aa)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FechaNacimiento.Date)
+            @Model.FechaNacimiento.ToShortDateString()
         </dd>
 
         <dt>

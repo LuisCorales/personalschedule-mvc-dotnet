@@ -60,11 +60,13 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Contacto.Add(contacto);
-                ListaContacto listaContacto = new ListaContacto();
+                db.Contacto.Add(contacto);             
+                db.SaveChanges();
+                ListaContacto listaContacto = new ListaContacto();//Crea y llena una entrada para lista de contacto
                 listaContacto.ListaContactoID = contacto.ContactoID;
                 listaContacto.IDEvento = null;
-                listaContacto.IDContacto = contacto.ContactoID;
+                listaContacto.NombreApellido = contacto.Nombre + " " + contacto.Apellido;
+                db.ListaContactoes.Add(listaContacto);//Aniade una entrada a la lista de contactos al crear contactos
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -124,7 +126,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Contacto contacto = db.Contacto.Find(id);
+            ListaContacto listaContacto = db.ListaContactoes.Find(id);//Encuentra el contacto en la lista de contactos           
             db.Contacto.Remove(contacto);
+            db.ListaContactoes.Remove(listaContacto);//Borra esa entrada de lista de contacto
             db.SaveChanges();
             return RedirectToAction("Index");
         }

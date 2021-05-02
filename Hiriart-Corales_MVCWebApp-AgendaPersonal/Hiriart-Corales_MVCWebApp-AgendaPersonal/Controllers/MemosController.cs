@@ -120,7 +120,8 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Memo memo = db.Memo.Find(id);
-            foreach (var evento in memo.Evento)
+            var eventos = db.Evento.Where(s => s.MemoID == id);
+            foreach (var evento in eventos)
             {
                 evento.Memo = null;
             }

@@ -32,7 +32,7 @@
             Organización
         </th>
         <th>
-            Fecha de nacimiento
+            Fecha de nacimiento (dd/mm/aa)
         </th>
         <th>
             Información adicional
@@ -59,7 +59,7 @@
                 @Html.DisplayFor(modelItem => item.Organizacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento.Date)
+                @item.FechaNacimiento.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.InformacionAdicional)

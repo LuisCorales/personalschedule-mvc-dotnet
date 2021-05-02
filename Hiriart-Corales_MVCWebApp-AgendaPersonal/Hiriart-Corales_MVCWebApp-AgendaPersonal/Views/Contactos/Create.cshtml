@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FechaNacimiento, "Fecha de nacimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.FechaNacimiento, "Fecha de nacimiento (dd/mm/aa)", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
