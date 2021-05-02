@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -52,8 +53,11 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
 
         // GET: Diarios/Create
         public ActionResult Create()
-        {
-            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID");
+        {           
+            var fechasEventos = db.ListaEventoes.Where(s => s.FechaEvento.Equals(DateTime.Today));
+            ViewBag.ListaEventoID = new SelectList(fechasEventos, "ListaEventoID", "Titulo");
+            //Tener ListaEventoID y Titulo en lugar de ambos ListaEventoID permite seleccion de eventos
+            //relacionados al diario mostrando solo el titulo de la fecha actual pero maneja el ID
             return View();
         }
 
@@ -67,6 +71,23 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             if (ModelState.IsValid)
             {
                 db.Diario.Add(diario);
+                if(diario.ListaEventoID!=null)//Modifica la tabla para mostrar los eventos asociados a calendario
+                {
+                    var eventos = from s in db.ListaEventoes select s;
+                    eventos = eventos.Where(s => s.FechaEvento.Equals(DateTime.Today));
+                    foreach (var evento in eventos)
+                    {
+                        foreach (var id in diario.ListaEventoID)
+                        {
+                            if (evento.IDEvento.Equals(id))
+                            {
+                                evento.IDDiario = diario.DiarioID;
+                                Debug.WriteLine("Acaaaa");
+                            }
+                        }
+                    }
+                }
+                Debug.WriteLine(diario.Fecha.GetType());
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

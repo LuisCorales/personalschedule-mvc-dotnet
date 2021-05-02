@@ -163,4 +163,3 @@ C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCW
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csproj.CopyComplete
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.dll
 C:\Users\luisa\Documents\GitHub\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.pdb
-C:\Code UDLA\Programacion 4\personalschedule-mvc-dotnet\Hiriart-Corales_MVCWebApp-AgendaPersonal\Hiriart-Corales_MVCWebApp-AgendaPersonal\obj\Debug\Hiriart-Corales_MVCWebApp-AgendaPersonal.csprojAssemblyReference.cache

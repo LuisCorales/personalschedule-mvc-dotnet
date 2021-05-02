@@ -67,9 +67,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 db.Evento.Add(evento);
                 ListaEvento listaEvento = new ListaEvento();//Crea y llena un anetrada de lista de eventos
                 listaEvento.ListaEventoID = evento.EventoID;
-                listaEvento.IDDiario = null;
-                listaEvento.IDEvento = evento.EventoID;
+                listaEvento.IDDiario = null;              
                 listaEvento.Titulo = evento.Titulo;
+                listaEvento.FechaEvento = evento.Inicio.Date;
                 db.ListaEventoes.Add(listaEvento);//Aniade una una entrada lista de eventos cuando se crea une vento
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -9,7 +9,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
     public class Diario
     {
         public int DiarioID { get; set; }
-        public Nullable<int> ListaEventoID { get; set; }
+        public List<Nullable<int>> ListaEventoID { get; set; }
         [Required]
         public DateTime Fecha { get; set; }
         [Required]
