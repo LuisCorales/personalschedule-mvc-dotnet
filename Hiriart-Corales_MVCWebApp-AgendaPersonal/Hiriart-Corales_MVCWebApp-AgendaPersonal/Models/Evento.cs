@@ -13,6 +13,8 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public Nullable<int> MemoID { get; set; }
         public Nullable<int> ListaContactoID { get; set; }
         [Required]
+        public DateTime Fecha { get; set; }
+        [Required]
         public DateTime Inicio { get; set; }
         [Required]
         public DateTime Fin { get; set; }

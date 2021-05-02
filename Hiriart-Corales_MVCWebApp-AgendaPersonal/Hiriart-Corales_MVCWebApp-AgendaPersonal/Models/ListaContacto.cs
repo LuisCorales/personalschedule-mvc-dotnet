@@ -9,7 +9,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
     {
         public int ListaContactoID { get; set; }
         public Nullable<int> IDEvento { get; set; }
-        public int IDContacto { get; set; }
+        public string NombreApelido { get; set; }
 
         public virtual ICollection<Evento> Evento { get; set; }
     }

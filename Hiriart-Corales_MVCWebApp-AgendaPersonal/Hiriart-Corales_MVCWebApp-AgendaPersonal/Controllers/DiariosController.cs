@@ -28,10 +28,12 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 var diario = from s in db.Diario select s;
                 diario = diario.Where(s => s.Fecha.Date.Equals(fecha));
+                ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "IDDiario", "Titulo");
                 return View(diario.ToList());
             }
             else
             {
+                ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "IDDiario", "Titulo");
                 return View(db.Diario.ToList());
             }
         }
@@ -48,6 +50,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            var fechasEventos = db.ListaEventoes.Where(s => s.IDDiario == id);
+            //Lo anterior es: fechasEventos = fechasEventos.Where(s => s.IDDiario.Value==id);        
+            ViewBag.ListaEventoID = new SelectList(fechasEventos, "IDDiario", "Titulo");
             return View(diario);
         }
 
@@ -55,6 +60,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult Create()
         {           
             var fechasEventos = db.ListaEventoes.Where(s => s.FechaEvento.Equals(DateTime.Today));
+            //Usar Datetime.Today para que solo compare fecha y no hora, la hora del evento no concidiria siempre
             ViewBag.ListaEventoID = new SelectList(fechasEventos, "ListaEventoID", "Titulo");
             //Tener ListaEventoID y Titulo en lugar de ambos ListaEventoID permite seleccion de eventos
             //relacionados al diario mostrando solo el titulo de la fecha actual pero maneja el ID
@@ -69,9 +75,10 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         public ActionResult Create([Bind(Include = "DiarioID,ListaEventoID,Fecha,Contenido")] Diario diario)
         {
             if (ModelState.IsValid)
-            {
-                db.Diario.Add(diario);
-                if(diario.ListaEventoID!=null)//Modifica la tabla para mostrar los eventos asociados a calendario
+            { 
+                db.Diario.Add(diario);                           
+                db.SaveChanges();
+                if (diario.ListaEventoID != null)//Modifica la tabla para mostrar los eventos asociados a calendario
                 {
                     var eventos = from s in db.ListaEventoes select s;
                     eventos = eventos.Where(s => s.FechaEvento.Equals(DateTime.Today));
@@ -79,19 +86,16 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                     {
                         foreach (var id in diario.ListaEventoID)
                         {
-                            if (evento.IDEvento.Equals(id))
+                            if (evento.ListaEventoID == id)
                             {
                                 evento.IDDiario = diario.DiarioID;
-                                Debug.WriteLine("Acaaaa");
                             }
                         }
                     }
                 }
-                Debug.WriteLine(diario.Fecha.GetType());
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID", diario.ListaEventoID);
             return View(diario);
         }
@@ -108,7 +112,8 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ListaEventoID = new SelectList(db.ListaEventoes, "ListaEventoID", "ListaEventoID", diario.ListaEventoID);
+            var fechasEventos = db.ListaEventoes.Where(s => s.FechaEvento.Equals(diario.Fecha));
+            ViewBag.ListaEventoID = new SelectList(fechasEventos, "ListaEventoID", "Titulo", diario.ListaEventoID);
             return View(diario);
         }
 
@@ -122,6 +127,22 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(diario).State = EntityState.Modified;
+                db.SaveChanges();
+                if (diario.ListaEventoID != null)//Modifica la tabla para mostrar los eventos asociados a calendario
+                {
+                    var eventos = from s in db.ListaEventoes select s;
+                    eventos = eventos.Where(s => s.FechaEvento.Equals(DateTime.Today));
+                    foreach (var evento in eventos)
+                    {
+                        foreach (var id in diario.ListaEventoID)
+                        {
+                            if (evento.ListaEventoID == id)
+                            {
+                                evento.IDDiario = diario.DiarioID;
+                            }
+                        }
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -141,6 +162,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            var fechasEventos = db.ListaEventoes.Where(s => s.IDDiario==id);
+            //Lo anterior es: fechasEventos = fechasEventos.Where(s => s.IDDiario.Value==id);        
+            ViewBag.ListaEventoID = new SelectList(fechasEventos, "IDDiario", "Titulo");
             return View(diario);
         }
 

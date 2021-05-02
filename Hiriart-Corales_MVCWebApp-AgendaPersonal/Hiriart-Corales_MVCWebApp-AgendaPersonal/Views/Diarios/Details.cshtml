@@ -11,28 +11,27 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           ListaEventoID
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ListaEvento.ListaEventoID)
-        </dd>
-
-        <dt>
             Fecha
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Fecha)
+            @Model.Fecha.ToShortDateString()
         </dd>
 
         <dt>
-            Contenido)
+            Contenido
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Contenido)
         </dd>
+        <dt>
+            Eventos relacionados
+        </dt>
+        <dd>
+            @Html.ListBox("ListaEventoID", null, htmlAttributes: new { @class = "form-control" })
+        </dd>
+
 
     </dl>
 </div>

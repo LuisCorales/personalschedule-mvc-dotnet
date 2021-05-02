@@ -64,7 +64,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 ListaContacto listaContacto = new ListaContacto();//Crea y llena una entrada para lista de contacto
                 listaContacto.ListaContactoID = contacto.ContactoID;
                 listaContacto.IDEvento = null;
-                listaContacto.IDContacto = contacto.ContactoID;
                 db.ListaContactoes.Add(listaContacto);//Aniade una entrada a la lista de contactos al crear contactos
                 db.SaveChanges();
                 return RedirectToAction("Index");

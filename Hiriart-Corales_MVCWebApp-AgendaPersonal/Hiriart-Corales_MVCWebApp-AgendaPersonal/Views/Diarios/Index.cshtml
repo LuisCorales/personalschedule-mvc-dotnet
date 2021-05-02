@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Diario>
+@using Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
 
 @{
     ViewBag.Title = "Índice";
@@ -23,27 +24,31 @@
             Contenido
         </th>
         <th>
-            ListaEventoID
+            Eventos relacionados
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>          
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
+                @item.Fecha.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Contenido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ListaEvento.ListaEventoID)
+                @{//Esto permite mostrar los eventos relacionados a cada entrada de diario en el indice                   
+                    AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
+                    var eventos = db.ListaEventoes.Where(s => s.IDDiario == item.DiarioID);
+                }
+                Hay @eventos.Count().ToString() eventos relacionados, vea detalles para más información
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.DiarioID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.DiarioID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.DiarioID })
+                @Html.ActionLink("Editar", "Edit", new { id = item.DiarioID }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.DiarioID }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.DiarioID })
             </td>
         </tr>
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -60,16 +61,17 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
-        {
+        public ActionResult Create([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Fecha,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
+        {           
             if (ModelState.IsValid)
             {
                 db.Evento.Add(evento);
+                db.SaveChanges();
                 ListaEvento listaEvento = new ListaEvento();//Crea y llena un anetrada de lista de eventos
                 listaEvento.ListaEventoID = evento.EventoID;
-                listaEvento.IDDiario = null;              
+                listaEvento.IDDiario = null;
                 listaEvento.Titulo = evento.Titulo;
-                listaEvento.FechaEvento = evento.Inicio.Date;
+                listaEvento.FechaEvento = evento.Fecha;
                 db.ListaEventoes.Add(listaEvento);//Aniade una una entrada lista de eventos cuando se crea une vento
                 db.SaveChanges();
                 return RedirectToAction("Index");
