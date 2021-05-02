@@ -43,7 +43,7 @@
                     AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
                     var eventos = db.ListaEventoes.Where(s => s.IDDiario == item.DiarioID);
                 }
-                Hay @eventos.Count().ToString() eventos relacionados, vea detalles para más información
+                Hay @eventos.Count().ToString() evento(s) relacionados, vea detalles para más información
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.DiarioID }) |

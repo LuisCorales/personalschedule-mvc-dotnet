@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,10 +9,12 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
 {
     public class Evento
     {
-        public int EventoID { get; set; }      
+        public int EventoID { get; set; }
+        public Nullable<int> DiarioID { get; set; }
         public Nullable<int> NotificacionID { get; set; }
         public Nullable<int> MemoID { get; set; }
-        public Nullable<int> ListaContactoID { get; set; }
+        public List<Nullable<int>> ListaContactoID { get; set; }
+
         [Required]
         public DateTime Fecha { get; set; }
         [Required]
@@ -28,8 +31,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public bool EsSerie { get; set; }
         public string Dias { get; set; }
 
-        public virtual ListaContacto ListaContacto { get; set; }
+        public virtual Diario Diario { get; set; }
         public virtual Notificacion Notificacion { get; set; }
         public virtual Memo Memo { get; set; }
+        public virtual ListaContacto ListaContacto { get; set; }
     }
 }

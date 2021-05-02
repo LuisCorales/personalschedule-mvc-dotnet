@@ -18,5 +18,6 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         public string Contenido { get; set; }
         
         public virtual ListaEvento ListaEvento { get; set; }
+        public virtual ICollection<Evento> Evento { get; set; }
     }
 }

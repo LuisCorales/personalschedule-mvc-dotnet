@@ -163,7 +163,7 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
                 return HttpNotFound();
             }
             var fechasEventos = db.ListaEventoes.Where(s => s.IDDiario==id);
-            //Lo anterior es: fechasEventos = fechasEventos.Where(s => s.IDDiario.Value==id);        
+            //Lo anterior es: fechasEventos = fechasEventos.Where(s => s.IDDiario==id);        
             ViewBag.ListaEventoID = new SelectList(fechasEventos, "IDDiario", "Titulo");
             return View(diario);
         }
@@ -176,6 +176,11 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             Diario diario = db.Diario.Find(id);
             db.Diario.Remove(diario);
             db.SaveChanges();
+            var eventos = db.Evento.Where(s => s.DiarioID == id);
+            foreach(var evento in eventos)
+            {
+                evento.DiarioID = null;
+            }
             return RedirectToAction("Index");
         }
 

@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Hiriart_Corales_MVCWebApp_AgendaPersonal.Models.Evento>
+@using Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
 
 @{
     ViewBag.Title = "Índice";
@@ -17,7 +18,7 @@
 <table class="table">
     <tr>
         <th>
-            Fecha (aa/mm/dd)
+            Fecha (dd/mm/aa)
         </th>
         <th>
             Hora de inicio (hh:mm:ss)
@@ -41,13 +42,13 @@
             Días de repetición
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+            Contactos relacionados
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Memo.Contenido)
+            Memo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
+            Notificación
         </th>
         <th></th>
     </tr>
@@ -56,7 +57,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Inicio.Date)
+                @item.Fecha.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Inicio.TimeOfDay)
@@ -80,13 +81,17 @@
                 @Html.DisplayFor(modelItem => item.Dias)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ListaContacto.ListaContactoID)
+                @{//Esto permite mostrar los eventos relacionados a cada entrada de diario en el indice
+                    AgendaPersonalCF_Hiriart_Corales db = new AgendaPersonalCF_Hiriart_Corales();
+                    var contactos = db.ListaContactoes.Where(s => s.IDEvento == item.EventoID);
+                }
+                Hay @contactos.Count().ToString() contacto(s) relacionados, vea detalles para más información
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Memo.Contenido)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Notificacion.Titulo)
+                @Html.DisplayFor(modelItem => item.Notificacion.Hora)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.EventoID }) |
