@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -43,13 +44,16 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            var contactos = db.ListaContactoes.Where(s => s.IDEvento == id);
+            //Lo anterior es: contactos = contactos.Where(s => s.IDEvento==id); 
+            ViewBag.ListaContactoID = new SelectList(contactos, "ListaContactoID", "NombreApellido");
             return View(evento);
         }
 
         // GET: Eventos/Create
         public ActionResult Create()
         {
-            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID");
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "NombreApellido");
             ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido");
             ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo");
             return View();
@@ -60,17 +64,33 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
-        {
+        public ActionResult Create([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Fecha,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
+        {           
             if (ModelState.IsValid)
             {
                 db.Evento.Add(evento);
+                db.SaveChanges();
                 ListaEvento listaEvento = new ListaEvento();//Crea y llena un anetrada de lista de eventos
                 listaEvento.ListaEventoID = evento.EventoID;
                 listaEvento.IDDiario = null;
-                listaEvento.IDEvento = evento.EventoID;
                 listaEvento.Titulo = evento.Titulo;
+                listaEvento.FechaEvento = evento.Fecha;
                 db.ListaEventoes.Add(listaEvento);//Aniade una una entrada lista de eventos cuando se crea une vento
+                db.SaveChanges();
+                if (evento.ListaContactoID != null)//Modifica la tabla para mostrar los eventos asociados a calendario
+                {
+                    var contactos = from s in db.ListaContactoes select s;                 
+                    foreach (var contacto in contactos)
+                    {
+                        foreach (var id in evento.ListaContactoID)
+                        {
+                            if (contacto.ListaContactoID == id)
+                            {
+                                contacto.IDEvento = evento.EventoID;
+                            }
+                        }
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -92,8 +112,8 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             if (evento == null)
             {
                 return HttpNotFound();
-            }
-            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "ListaContactoID", evento.ListaContactoID);
+            }            
+            ViewBag.ListaContactoID = new SelectList(db.ListaContactoes, "ListaContactoID", "NombreApellido");
             ViewBag.MemoID = new SelectList(db.Memo, "MemoID", "Contenido", evento.MemoID);
             ViewBag.NotificacionID = new SelectList(db.Notificacion, "NotificacionID", "Titulo", evento.NotificacionID);
             return View(evento);
@@ -104,11 +124,26 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
+        public ActionResult Edit([Bind(Include = "EventoID,NotificacionID,MemoID,ListaContactoID,Fecha,Inicio,Fin,Titulo,Descripcion,Ubicacion,EsSerie,Dias")] Evento evento)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(evento).State = EntityState.Modified;
+                db.SaveChanges();
+                if (evento.ListaContactoID != null)//Modifica la tabla para mostrar los eventos asociados a calendario
+                {
+                    var contactos = from s in db.ListaContactoes select s;
+                    foreach (var contacto in contactos)
+                    {
+                        foreach (var id in evento.ListaContactoID)
+                        {
+                            if (contacto.ListaContactoID == id)
+                            {
+                                contacto.IDEvento = evento.EventoID;
+                            }
+                        }
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -130,6 +165,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             {
                 return HttpNotFound();
             }
+            var contactos = db.ListaContactoes.Where(s => s.IDEvento == id);
+            //Lo anterior es: contactos = contactos.Where(s => s.IDEvento==id); 
+            ViewBag.ListaContactoID = new SelectList(contactos, "ListaContactoID", "NombreApellido");
             return View(evento);
         }
 
@@ -142,6 +180,9 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Controllers
             ListaEvento listaEvento = db.ListaEventoes.Find(id);//Encuentra la entrada de lista correcta             
             db.Evento.Remove(evento);
             db.ListaEventoes.Remove(listaEvento);
+            //(En desarrollo) Encuentra los memos y notificaciones que tengan relacion a este evento y les borra
+            //db.Memo.Remove(evento.Memo);
+            //db.Notificacion.Remove(evento.Notificacion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

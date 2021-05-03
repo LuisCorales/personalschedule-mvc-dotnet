@@ -19,6 +19,9 @@
         <th>
             Contenido
         </th>
+        <th>
+            Evento
+        </th>
         <th></th>
     </tr>
 
@@ -27,6 +30,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Contenido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Evento)
             </td>
             <td>
                 @Html.ActionLink("Editar", "Edit", new { id = item.MemoID }) |

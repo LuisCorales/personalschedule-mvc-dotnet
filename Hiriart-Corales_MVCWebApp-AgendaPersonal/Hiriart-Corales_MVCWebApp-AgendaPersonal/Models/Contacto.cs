@@ -15,12 +15,14 @@ namespace Hiriart_Corales_MVCWebApp_AgendaPersonal.Models
         [Required]
         [StringLength(30)]
         public string Apellido { get; set; }
+        [Required]
         [StringLength(30)]
         public string Telefono { get; set; }
         [StringLength(60)]
         public string Email { get; set; }
         [StringLength(60)]
         public string Organizacion { get; set; }
+        [Required(AllowEmptyStrings =true)]
         public DateTime FechaNacimiento { get; set; }
         [StringLength(140)]
         public string InformacionAdicional { get; set; }

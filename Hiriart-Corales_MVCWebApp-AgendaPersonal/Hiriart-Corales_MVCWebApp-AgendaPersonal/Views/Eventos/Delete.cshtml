@@ -13,11 +13,11 @@
     <dl class="dl-horizontal">
 
         <dt>
-            Fecha (aa/mm/dd)
+            Fecha (dd/mm/aa)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Inicio.Date)
+            @Model.Fecha.ToShortDateString()
         </dd>
 
         <dt>
@@ -76,15 +76,15 @@
             @Html.DisplayFor(model => model.Dias)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ListaContacto.ListaContactoID)
+            Contactos relacionados
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ListaContacto.ListaContactoID)
+            @Html.ListBox("ListaContactoID", null, htmlAttributes: new { @class = "form-control" })
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Memo.Contenido)
+            Memo
         </dt>
 
         <dd>
@@ -92,11 +92,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Notificacion.Titulo)
+            Notificación
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Notificacion.Titulo)
+            @Html.DisplayFor(model => model.Notificacion.Hora)
         </dd>
 
     </dl>
