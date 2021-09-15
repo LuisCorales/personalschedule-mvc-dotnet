@@ -1,4 +1,4 @@
-# Diario Personal DOT.NET, framewor MVC
+# Diario Personal DOT.NET, framework MVC
 ## Diego Hiriart & Luis Corales
 ### ISWZ2103-01 Programación IV
  
